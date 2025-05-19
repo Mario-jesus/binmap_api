@@ -21,7 +21,15 @@ cd binmap_api
 pipenv install
 ```
 
-### 3. Configurar variables de entorno
+### 3. Generar una clave secreta para Django
+
+Para generar una clave secreta segura para Django, visita el siguiente enlace:
+
+[Django Secret Key Generator](https://miniwebtool.com/es/django-secret-key-generator/)
+
+Esta herramienta generará una clave secreta aleatoria y segura que podrás usar en tu archivo `.env`.
+
+### 4. Configurar variables de entorno
 Crea un archivo `.env` en la raíz del proyecto basado en el archivo `env-example.txt`:
 ```bash
 cp env-example.txt .env
@@ -29,28 +37,30 @@ cp env-example.txt .env
 
 El archivo `.env` debe contener:
 ```env
-SECRET_KEY=Tu clave secreta de djangp
+SECRET_KEY=Tu clave secreta de django
 DEBUG=True
 ALLOWED_HOSTS=127.0.0.1
 ```
 
-### 4. Activar el entorno virtual
+Reemplaza "Tu clave secreta de django" con la clave generada en el paso anterior.
+
+### 5. Activar el entorno virtual
 ```bash
 pipenv shell
 ```
 
-### 5. Aplicar migraciones
+### 6. Aplicar migraciones
 ```bash
 python manage.py makemigrations
 python manage.py migrate
 ```
 
-### 6. Crear un superusuario (opcional)
+### 7. Crear un superusuario (opcional)
 ```bash
 python manage.py createsuperuser
 ```
 
-### 7. Iniciar el servidor de desarrollo
+### 8. Iniciar el servidor de desarrollo
 ```bash
 python manage.py runserver
 ```
