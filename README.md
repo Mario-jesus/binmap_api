@@ -1,7 +1,7 @@
 # BinMap API
 
 ## Descripción
-BinMap API es un servicio backend desarrollado con Django y Django REST Framework que proporciona endpoints para autenticación de usuarios y gestión de cuentas.
+BinMap API es el servicio backend que impulsa una aplicación móvil diseñada como un mapa interactivo para las estaciones del Tren Maya. Este backend, desarrollado con Django y Django REST Framework, proporciona los endpoints necesarios para la autenticación de usuarios y la gestión de cuentas, así como para la obtención de datos sobre puntos de interés y rutas turísticas en las estaciones del Tren Maya. El objetivo es enriquecer la experiencia del turista y promover el turismo en la región mediante un acceso eficiente y seguro a la información turística.
 
 ## Requisitos
 - Python 3.12
