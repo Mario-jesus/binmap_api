@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # third party apps
     'rest_framework',
+    'django_rest_passwordreset',
     # local apps
     'authentication',
 ]
