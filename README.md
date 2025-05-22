@@ -70,72 +70,22 @@ python manage.py runserver
 La API proporciona los siguientes endpoints:
 
 ### Autenticación
+- `POST /api/v1/auth/login/` - Iniciar sesión
+- `POST /api/v1/auth/logout/` - Cerrar sesión
+- `POST /api/v1/auth/signup/` - Registrar nuevo usuario
+- `GET /api/v1/auth/user-detail/` - Obtener detalles del usuario actual
+- `POST /api/v1/auth/reset/` - Solicitar restablecimiento de contraseña
 
-#### Registro de usuario
-- **URL**: `/api/v1/auth/signup/`
-- **Método**: POST
-- **Datos**:
-  ```json
-  {
-    "email": "usuario@ejemplo.com",
-    "username": "usuario",
-    "password": "contraseña",
-    "first_name": "Nombre",
-    "last_name": "Apellido"
-  }
-  ```
-- **Respuesta exitosa**:
-  ```json
-  {
-    "id": "uuid-generado",
-    "email": "usuario@ejemplo.com",
-    "username": "usuario",
-    "first_name": "Nombre",
-    "last_name": "Apellido"
-  }
-  ```
+### Recursos
+- `GET /api/v1/states/` - Listar estados
+- `GET /api/v1/municipalities/` - Listar municipios
+- `GET /api/v1/categories/` - Listar categorías de lugares
+- `GET /api/v1/places/` - Listar lugares de interés
+- `GET /api/v1/favorites/` - Gestionar lugares favoritos del usuario
+- `GET /api/v1/routes/` - Listar rutas turísticas
+- `GET /api/v1/municipality-routes/` - Listar rutas por municipio
 
-#### Iniciar sesión
-- **URL**: `/api/v1/auth/login/`
-- **Método**: POST
-- **Datos**:
-  ```json
-  {
-    "email": "usuario@ejemplo.com",
-    "password": "contraseña"
-  }
-  ```
-- **Respuesta exitosa**:
-  ```json
-  {
-    "id": "uuid-del-usuario",
-    "email": "usuario@ejemplo.com",
-    "username": "usuario",
-    "first_name": "Nombre",
-    "last_name": "Apellido"
-  }
-  ```
-
-#### Cerrar sesión
-- **URL**: `/api/v1/auth/logout/`
-- **Método**: POST
-- **Autenticación**: Requerida
-- **Respuesta exitosa**: Código de estado 200 OK
-
-#### Obtener datos del usuario actual
-- **URL**: `/api/v1/auth/user-detail/`
-- **Método**: GET
-- **Autenticación**: Requerida
-- **Respuesta exitosa**:
-  ```json
-  {
-    "id": "uuid-del-usuario",
-    "email": "usuario@ejemplo.com",
-    "username": "usuario",
-    "first_name": "Nombre",
-    "last_name": "Apellido"
-  }
-  ```
+Todos los endpoints utilizan el prefijo `/api/v1/` y siguen los estándares REST para las operaciones CRUD.
 
 ## Panel de administración
 El panel de administración de Django está disponible en `/admin/`. Necesitarás haber creado un superusuario para acceder.
