@@ -173,3 +173,7 @@ cython_debug/
 # Migrations
 */migrations/*.py
 !*/migrations/__init__.py
+
+
+# Media files
+/media/

@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 from dotenv import load_dotenv # type: ignore
-from os import getenv
+from os import getenv, path
 
 load_dotenv()
 
@@ -47,6 +47,8 @@ INSTALLED_APPS = [
     'corsheaders',
     # local apps
     'authentication',
+    'places',
+    'routes'
 ]
 
 MIDDLEWARE = [
@@ -137,6 +139,24 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # AUTH_USER_MODEL is the model that will be used to authenticate users
 AUTH_USER_MODEL = 'authentication.CustomUser'
 
+# REST Framework settings
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.BasicAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+        'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.IsAdminUser',
+    ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,
+}
+
+# CORS settings
+
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_METHODS = [
@@ -147,3 +167,16 @@ CORS_ALLOW_METHODS = [
     'POST',
     'PUT',
 ]
+
+
+# Media files
+
+MEDIA_ROOT = path.join(BASE_DIR, "media")
+MEDIA_URL = '/media/'
+
+
+# Session settings
+
+SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
+SESSION_COOKIE_NAME = 'sessionid'
+SESSION_SAVE_EVERY_REQUEST = True
