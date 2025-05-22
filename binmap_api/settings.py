@@ -143,8 +143,9 @@ AUTH_USER_MODEL = 'authentication.CustomUser'
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
@@ -167,7 +168,17 @@ CORS_ALLOW_METHODS = [
     'POST',
     'PUT',
 ]
-
+CORS_ALLOW_HEADERS = [
+    'accept',
+    'accept-encoding',
+    'authorization',
+    'content-type',
+    'dnt',
+    'origin',
+    'user-agent',
+    'x-csrftoken',
+    'x-requested-with',
+]
 
 # Media files
 
@@ -175,8 +186,14 @@ MEDIA_ROOT = path.join(BASE_DIR, "media")
 MEDIA_URL = '/media/'
 
 
+# Carga de archivos
+FILE_UPLOAD_MAX_MEMORY_SIZE = 1024 * 1024 * 30
+DATA_UPLOAD_MAX_MEMORY_SIZE = 1024 * 1024 * 30
+
+
 # Session settings
 
 SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
 SESSION_COOKIE_NAME = 'sessionid'
 SESSION_SAVE_EVERY_REQUEST = True
+SESSION_COOKIE_SAMESITE = None
