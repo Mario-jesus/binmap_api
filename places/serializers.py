@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from rest_framework import serializers
-from .models import Municipality, State, Category, Place, Favorite
+from .models import Municipality, State, Category, Place, Favorite, VisitedPlace
 from django.contrib.auth import get_user_model
 from routes.models import Route
 
@@ -69,4 +69,19 @@ class FavoriteDetailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Favorite
+        fields = '__all__'
+
+
+class VisitedPlaceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = VisitedPlace
+        fields = '__all__'
+
+
+class VisitedPlaceDetailSerializer(serializers.ModelSerializer):
+    place = PlaceSerializer(read_only=True)
+    user = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
+
+    class Meta:
+        model = VisitedPlace
         fields = '__all__'

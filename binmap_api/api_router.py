@@ -6,7 +6,8 @@ from places.views import (
     MunicipalityViewSet,
     CategoryViewSet,
     PlaceViewSet,
-    FavoriteViewSet
+    FavoriteViewSet,
+    VisitedPlaceViewSet
 )
 from routes.views import RouteViewSet, MunicipalityHasRouteViewSet
 
@@ -17,6 +18,7 @@ router.register(r'municipalities', MunicipalityViewSet)
 router.register(r'categories', CategoryViewSet)
 router.register(r'places', PlaceViewSet)
 router.register(r'favorites', FavoriteViewSet, basename='favorites')
+router.register(r'visited-places', VisitedPlaceViewSet, basename='visited-places')
 
 router.register(r'routes', RouteViewSet)
 router.register(r'municipality-routes', MunicipalityHasRouteViewSet) 

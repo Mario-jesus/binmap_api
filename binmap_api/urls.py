@@ -19,11 +19,13 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from .api_router import router
+from authentication.views import CustomObtainAuthToken
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/', include(router.urls)),
     path('api/v1/', include('authentication.urls')),
+    path('api/v1/auth/token/', CustomObtainAuthToken.as_view(), name='api_token_auth'),
 ]
 
 # Server static files in development server

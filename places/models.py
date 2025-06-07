@@ -2,6 +2,7 @@
 from django.db import models
 from django.contrib.auth import get_user_model
 import uuid
+from django.utils import timezone
 
 
 class State(models.Model):
@@ -59,3 +60,19 @@ class Favorite(models.Model):
 
     def __str__(self):
         return f"{self.user.username} - {self.place.name}"
+
+
+class VisitedPlace(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    place = models.ForeignKey(Place, on_delete=models.CASCADE, related_name='visits')
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE, related_name='visited_places')
+    visited_date = models.DateField(default=timezone.now)
+    notes = models.TextField(null=True, blank=True)
+
+    class Meta:
+        unique_together = ('place', 'user')
+        verbose_name = 'Visited Place'
+        verbose_name_plural = 'Visited Places'
+
+    def __str__(self):
+        return f"{self.user.username} visitó {self.place.name} el {self.visited_date}"
